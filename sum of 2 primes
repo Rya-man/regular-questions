@@ -2,14 +2,14 @@
 #include<iomanip>
 #include<math.h>
 using namespace std;
-int ptrav(unsigned long r,int a)
+/*int ptrav(unsigned long r,int a)
 {
     int flag, k[a];
-    for (int i = 2; i < r; i++)
+    for (int i = 2; i <= r/2; i++)
     {
         
         flag = 1;
-        for (int j = 2; j <= i / 2; ++j)
+        for (int j = 2; j < i / 2; ++j)
         {
             if (i % j == 0) 
             {
@@ -28,44 +28,65 @@ int ptrav(unsigned long r,int a)
         }
     }
     return k[a-1];
-}
-bool CheckPrime(unsigned long n) 
+}*/
+bool CheckPrime(int n) 
 { 
-    unsigned long i;int flag = 1; 
-    for(i = 2; i < n; i++) 
+    int i;int flag = 1; 
+    for(i = 2; i < sqrt(n); i++) 
     { 
         if(n % i == 0) 
           { 
               flag = 0;  
-              return 0; 
+              return false; 
               break;
           } 
  
     } 
     if(flag == 1) 
-        return 1; 
+        return true; 
 }
-int f(unsigned long n)
-{   int af;
+/*int f(unsigned long n)
+{   int af=0;
     for(int i=0;i<n;i++)
-    {   af=0;
+    {   
         if(CheckPrime(n-ptrav(n,i))==1)
         {
             af=1;
             break;
         }
         else
-        {
-            continue;
+        {   af=0;
         }
     }
-    af==1?cout<<"Yes":cout<<"No";
+    af==0?cout<<"No":cout<<"Yes";
+}*/
+bool f(int n)
+{
+    for(int i=2;i<n/2;i++)
+    {
+        if(n%2==0)
+        {
+            return true;
+            break;
+        }
+        else if(CheckPrime(i)&&CheckPrime(n-i))
+        {
+            return true;
+            break;
+        }
+        else
+        return false;
+    }
+}
+string isSumofPrime(int n)
+{
+    f(n)?cout<<"\nYes":cout<<"\nNo";
 }
 int main()
 {
-    unsigned long n;
+    int n;
     cout<<"\n\nEnter number\n\n";
     cin>>n;
-    f(n);
+    isSumofPrime(n);
     return 0;
 }
