@@ -1,0 +1,119 @@
+
+#include<iostream>
+using namespace std;
+class AbstractEmployee{
+    virtual void askforpromotion()=0;
+};
+class employee:AbstractEmployee
+{ private:
+    string Company;
+    int Age;
+   protected:
+   string Name; 
+   public:
+    virtual void Work(){
+        cout<<Name<<" is checking email,coding and doing chores \n";
+    }
+    void read();
+    void askforpromotion();
+    void yol();
+    employee()
+    {
+        Name="Default Name";
+        Company="noname so far";
+        Age=22;
+    }
+    employee(string n,string c,int a)
+    {
+        Name=n;
+        Company=c;
+        Age=a;
+    };
+    string getname(){
+        return Name;
+    }
+};
+class Developer:public employee
+{
+    public:
+    string FavProgrammingLanguage;
+    Developer(string n,string c,int a,string fpl)
+    :employee(n,c,a)
+    {
+        FavProgrammingLanguage=fpl;
+    }
+    void fixbug()
+    {
+        cout<<Name<<" Fixed a bug using "<<FavProgrammingLanguage<<endl;
+    }
+    void Work(){
+        cout<<Name<<" is writing "<<FavProgrammingLanguage<<" code \n";
+    }
+}; 
+void employee::askforpromotion()
+{
+    if(Age>=30)
+    cout<<endl<<Name<<" can receive promotion !!!\n";
+    else
+    cout<<"No promotion for "<<Name<<endl;
+}
+void employee::read()
+{	
+	cout<<"enter details"<<endl;
+	cin>>Name>>Company>>Age;
+}
+void employee::yol()
+{
+    cout<<"\nname "<<Name<<endl;
+    cout<<"company "<<Company<<endl;
+    cout<<"age "<<Age<<endl;
+};
+class Teacher:public employee
+{
+    public: 
+    string Subject;
+    void Preparelesson()
+    {
+        cout<<Name<<" is prepairing "<<Subject<<" lesson "<<endl;
+    }
+    Teacher(string n,string c,int a,string subject)
+    :   employee(n,c,a)
+    {
+        Subject=subject;
+    }
+    void Work(){
+        cout<<Name<<" is Teaching "<<Subject<<"\n";
+    }
+};
+int main()
+{
+    employee e3,e1;
+    e1 = employee("Arya ","customcompany",35);
+    //e3 = employee();
+	//e3.read();
+    //e3.Age=18;
+    //e1.askforpromotion();
+    //e1.yol();
+    cout<<"\n";
+    //e3.askforpromotion();
+    //e3.yol();
+    Developer d = Developer("Aryaman","Codefreaks",18,"C++");
+   // d.fixbug();
+    //d.askforpromotion();
+    Teacher t=Teacher("Jack","Cool school",36,"Geography");
+    /*t.Preparelesson();
+    t.askforpromotion();
+*/    
+    /*t.Work();
+    d.Work();
+    e1.Work();*/
+    employee *ea=&d;//a pointer of base class can hold reference to derived class object
+    employee *eb=&t;
+
+    ea->Work();
+    eb->Work();
+    //when a virtual fun is invoked it checks if there is implementation in the dderived classes and then executes that instead
+    //When a virtual function is used its most derived/deep function is executed
+    return 0;
+
+}
