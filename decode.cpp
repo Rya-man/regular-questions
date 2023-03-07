@@ -20,4 +20,5 @@ int main()
         cout<<decode(a,i);
     }
 }
-//H7e#5^%1y!5(9h6o3w6$3a6r7e6y8o6u7
+//INPUT:  H7e#5^%1y!5(9h6o3w6$3a6r7e6y8o6u7
+//INPUT:  F7u5^%1c!5(9k6Y3o6$3u6A7n6d8Y6o7u3242545r.';[;M4813o;;;;;.m
